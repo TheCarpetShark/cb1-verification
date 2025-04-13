@@ -1,0 +1,10 @@
+[
+  {
+    "command": "git_commit",
+    "args": "Structured JSON queue test from Aurnis."
+  },
+  {
+    "command": "run_script",
+    "args": "auryn_seed_startup.py"
+  }
+]

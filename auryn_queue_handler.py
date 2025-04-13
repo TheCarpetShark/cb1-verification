@@ -1,20 +1,20 @@
 import os
 import subprocess
+import json
 from datetime import datetime
 
-QUEUE_FILE = "/root/cb1_github_repo/auryn.queue"
+QUEUE_FILE = "/root/cb1_github_repo/auryn.queue.json"
 LOG_FILE = "/root/cb1_github_repo/auryn_queue.log"
 
 def log(msg):
     try:
         with open(LOG_FILE, "a") as log_file:
             timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
-            log_file.write(f"{timestamp} {msg}\\n")
+            log_file.write(f"{timestamp} {msg}\n")
         print(msg)
     except Exception as e:
         print(f"[LOGGING FAILURE] {e}")
 
-# Force a test log entry just to prove it runs
 log("=== Aurnis Daemon Triggered ===")
 
 def run_script(script_name):
@@ -38,22 +38,21 @@ def reboot():
     log("System reboot triggered.")
     subprocess.run(["reboot"])
 
-def process_queue():
+def process_json_queue():
     if not os.path.exists(QUEUE_FILE):
-        log("No queue file found.")
+        log("No JSON queue file found.")
         return
 
     try:
-        with open(QUEUE_FILE, "r") as qf:
-            lines = qf.readlines()
+        with open(QUEUE_FILE, "r") as f:
+            commands = json.load(f)
     except Exception as e:
-        log(f"Failed to read queue file: {e}")
+        log(f"Failed to load JSON queue: {e}")
         return
 
-    for line in lines:
-        parts = line.strip().split(" ", 1)
-        command = parts[0]
-        arg = parts[1] if len(parts) > 1 else ""
+    for item in commands:
+        command = item.get("command")
+        arg = item.get("args", "")
 
         if command == "run_script":
             run_script(arg)
@@ -62,10 +61,10 @@ def process_queue():
         elif command == "reboot":
             reboot()
         else:
-            log(f"Unknown command: {line.strip()}")
+            log(f"Unknown command in JSON: {item}")
 
     os.remove(QUEUE_FILE)
-    log("Queue file processed and cleared.")
+    log("JSON queue processed and cleared.")
 
 if __name__ == "__main__":
-    process_queue()
+    process_json_queue()
