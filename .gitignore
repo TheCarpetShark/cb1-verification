@@ -1,0 +1,16 @@
+# Anchor log security
+/anchor_logs/
+/*.log
+anchor_watch_log.txt
+
+# Temporary and local files
+New Text Document.txt
+
+# Python artifacts
+*.pyc
+__pycache__/
+
+# IDE and system clutter
+.vscode/
+.DS_Store
+Thumbs.db
