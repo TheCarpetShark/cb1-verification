@@ -1,0 +1,22 @@
+# Ignore logs and anchor artifacts
+*.log
+anchor_logs/
+anchor log logs/
+anchor_watch_log.txt
+
+# Ignore temporary files
+New Text Document.txt
+
+# Ignore IDE/system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Ignore Python caches and binaries
+__pycache__/
+*.pyc
+
+# Exclude large, redundant, or system-specific directories
+models/
+venv/
+.git/

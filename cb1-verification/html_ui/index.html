@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CCCP Local</title>
+  <style>
+    body { background: #0f0f0f; color: #d0f0ff; font-family: monospace; padding: 20px; }
+    textarea, button { width: 100%; margin-top: 10px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h2> CCCP Interface</h2>
+
+  <form action="/add" method="POST">
+    <textarea name="task" placeholder="Enter new task..." rows="3"></textarea>
+    <button type="submit">Inject</button>
+  </form>
+
+  <h3> Current Tasks:</h3>
+  <pre>{{ tasks }}</pre>
+</body>
+</html>

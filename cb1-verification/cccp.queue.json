@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Design a JSON-based task structure for local AI automation."
+  },
+  {
+    "task": "Initialize HTML interface to accept and inject queue items."
+  },
+  {
+    "task": "Draft PowerShell routine to generate .py files from user prompt."
+  },
+  {
+    "task": "Analyze current directory for invalid or deprecated file entries."
+  },
+  {
+    "task": "tell me the story of our people, who are you?\r\n"
+  }
+]
